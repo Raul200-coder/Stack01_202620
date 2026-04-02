@@ -10,7 +10,10 @@ public class Ventana {
     private JButton btnMostrar;
     private JTextArea txtListar;
     private JPanel panel;
+    private JButton btnLikes;
+    private JButton btnReset;
     private Pila pila1=new Pila();
+
 
     public Ventana() {
         btnInsertar.addActionListener(new ActionListener() {
@@ -50,6 +53,30 @@ public class Ventana {
             @Override
             public void actionPerformed(ActionEvent e) {
                 txtListar.setText(pila1.showAll());
+            }
+        });
+        btnLikes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    pila1.peek().aumentarLikes();
+                    txtListar.setText(pila1.showAll());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
+
+            }
+        });
+        btnReset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    pila1.peek().resetLikes();
+                    txtListar.setText(pila1.showAll());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
+
             }
         });
     }
